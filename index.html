@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Adopción Huellita Feliz: fundación de rescate y adopción de perros y gatos en Bogotá. Conoce a los peluditos, revisa si entregamos en tu zona y deja tu solicitud.">
+<meta property="og:title" content="Adopción Huellita Feliz">
+<meta property="og:description" content="Adopta un perro o gato rescatado en Bogotá. Tu huella y la suya hacen un mismo corazón.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D8782E'%3E%3Cellipse cx='12' cy='15.5' rx='5.2' ry='4.6'/%3E%3Cellipse cx='5.2' cy='10.5' rx='2.2' ry='2.8'/%3E%3Cellipse cx='9.3' cy='6.3' rx='2.2' ry='2.9'/%3E%3Cellipse cx='14.7' cy='6.3' rx='2.2' ry='2.9'/%3E%3Cellipse cx='18.8' cy='10.5' rx='2.2' ry='2.8'/%3E%3C/svg%3E">
+<style>html{color-scheme:light dark}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Adopción Huellita Feliz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap">
+<style>
+/* Layout: una historia vertical. Intro fija (scrollytelling) → pasos → catálogo → mapa → formulario.
+   La huella dactilar del logo (corazón) y la huella de patita son el único motivo gráfico. */
+:root{
+  --paper:#FBF8F3; --ink:#1F1B18; --ink-2:#5E554D; --ink-3:#9A9088; --line:#E6DFD6;
+  --dog:#D8782E; --dog-deep:#B45E1E; --dog-soft:#F6E1CF;
+  --go:#3F7D4E; --go-soft:#DDEBDF; --wait:#C98B1E; --wait-soft:#F6E8CC; --stop:#B5433B; --stop-soft:#F3DAD7;
+  --street:#7A7570; --sky-sad:#B9B5B0; --sky-happy:#FFE2BF;
+  --card:#FFFFFF; --shadow:0 10px 30px rgba(31,27,24,.08);
+  --display:"Fredoka","Nunito Sans",system-ui,sans-serif;
+  --body:"Nunito Sans","Segoe UI",system-ui,sans-serif;
+  --r:18px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#171412; --ink:#F3EDE6; --ink-2:#C9BFB5; --ink-3:#8A8078; --line:#2E2823;
+  --dog:#E8893C; --dog-deep:#F2A765; --dog-soft:#3A2819;
+  --go:#7FC08E; --go-soft:#1F3425; --wait:#E0A94A; --wait-soft:#3A2E14; --stop:#E2766E; --stop-soft:#3F1F1D;
+  --street:#3B3733; --sky-sad:#2A2724; --sky-happy:#4A3320;
+  --card:#211D1A; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#171412; --ink:#F3EDE6; --ink-2:#C9BFB5; --ink-3:#8A8078; --line:#2E2823;
+  --dog:#E8893C; --dog-deep:#F2A765; --dog-soft:#3A2819;
+  --go:#7FC08E; --go-soft:#1F3425; --wait:#E0A94A; --wait-soft:#3A2E14; --stop:#E2766E; --stop-soft:#3F1F1D;
+  --street:#3B3733; --sky-sad:#2A2724; --sky-happy:#4A3320;
+  --card:#211D1A; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance;font-weight:600}
+h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--display);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--dog)}
+.lead{color:var(--ink-2);max-width:62ch;font-size:1.08rem}
+:focus-visible{outline:3px solid var(--dog);outline-offset:3px;border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;border:0;border-radius:999px;padding:.85rem 1.4rem;font-family:var(--display);font-weight:600;font-size:1rem;background:var(--dog);color:#fff;min-height:44px;transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s}
+.btn:hover{background:var(--dog-deep)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.ghost:hover{background:var(--card)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.paw{width:1em;height:1em;display:inline-block;vertical-align:-.12em;fill:currentColor}
+
+/* ---------- Header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:600;font-size:1.05rem}
+.brand svg{width:36px;height:36px}
+.nav{display:flex;gap:1.1rem;font-size:.95rem}
+.nav a{text-decoration:none;color:var(--ink-2);padding:.4rem .2rem;min-height:44px;display:inline-flex;align-items:center}
+.nav a:hover{color:var(--ink)}
+@media (max-width:640px){.nav{display:none}}
+
+/* ---------- Intro scrollytelling ---------- */
+.intro{position:relative;height:420vh}
+.stage{position:sticky;top:0;height:100svh;min-height:520px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(180deg,var(--sky-sad) 0%,var(--paper) 100%)}
+.stage .sky{position:absolute;inset:0;background:linear-gradient(180deg,var(--sky-happy) 0%,var(--paper) 100%);opacity:0}
+.stage .wrap{position:relative;width:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
+@media (max-width:760px){.stage .wrap{grid-template-columns:1fr;gap:.5rem;align-content:center}}
+.scene-art{position:relative;width:100%;max-width:560px;margin:0 auto;aspect-ratio:1/0.9}
+.scene-art svg{width:100%;height:100%;display:block;overflow:visible}
+.captions{position:relative;min-height:220px}
+.cap{position:absolute;inset:0;opacity:0;transform:translateY(12px)}
+.cap .eyebrow{display:block;margin-bottom:.5rem}
+.cap h1,.cap h2{font-size:clamp(2rem,5vw,3.4rem)}
+.cap p{margin-top:.9rem;color:var(--ink-2);max-width:40ch;font-size:1.08rem}
+.cap .btn{margin-top:1.3rem}
+.cap:first-child{opacity:1;transform:none}
+.scroll-hint{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.2rem;color:var(--ink-3);font-size:.8rem;font-family:var(--display);letter-spacing:.06em;text-transform:uppercase}
+.scroll-hint .paw{font-size:1.3rem;animation:step 1.6s ease-in-out infinite}
+@keyframes step{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
+.trail{position:absolute;inset:0;pointer-events:none}
+.trail .paw{position:absolute;width:26px;height:26px;color:var(--dog);opacity:0;transform:scale(.6) rotate(var(--rot,0deg))}
+
+/* Static version when motion is reduced or the animation library doesn't load */
+@media (prefers-reduced-motion: reduce){
+  .intro{height:auto}
+  .stage{position:relative;height:auto;min-height:0;padding-block:3rem;background:linear-gradient(180deg,var(--sky-happy),var(--paper))}
+  .captions{min-height:0}
+  .cap{position:static;opacity:1;transform:none;display:none}
+  .cap:last-child{display:block}
+  .scroll-hint,.trail{display:none}
+  .scene-art{aspect-ratio:auto}
+}
+.static .intro{height:auto}
+.static .stage{position:relative;height:auto;min-height:0;padding-block:3rem;background:linear-gradient(180deg,var(--sky-happy),var(--paper))}
+.static .captions{min-height:0}
+.static .cap{position:static;opacity:1;transform:none;display:none}
+.static .cap:last-child{display:block}
+.static .scroll-hint,.static .trail{display:none}
+.static .scene-art{aspect-ratio:auto}
+
+/* ---------- Secciones ---------- */
+section.block{padding-block:clamp(3.5rem,8vw,6.5rem)}
+.sec-head{display:grid;gap:.7rem;margin-bottom:2.2rem;max-width:62ch}
+
+/* Pasos (secuencia real: huella = paso) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;position:relative}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+.step{position:relative;padding:1.4rem 1.4rem 1.4rem 4.2rem;border-radius:var(--r);background:var(--card);box-shadow:var(--shadow)}
+.step .mark{position:absolute;left:1.2rem;top:1.3rem;width:2.1rem;height:2.1rem;color:var(--dog)}
+.step h3{font-size:1.25rem;margin-bottom:.4rem}
+.step p{color:var(--ink-2);font-size:.98rem}
+.step .note{margin-top:.7rem;font-size:.85rem;color:var(--ink-3)}
+
+/* Catálogo */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink-2);border-radius:999px;padding:.45rem .95rem;min-height:40px;font-family:var(--display);font-weight:500;font-size:.92rem;transition:all .18s ease-out}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.3rem}
+.pet{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.pet:hover{transform:translateY(-3px)}
+.pet .photo{aspect-ratio:4/3;display:grid;place-items:center;position:relative;overflow:hidden}
+.pet .photo svg{width:62%;height:auto}
+.pet .photo .tag{position:absolute;top:.8rem;left:.8rem;background:color-mix(in srgb,var(--card) 85%,transparent);backdrop-filter:blur(6px);border-radius:999px;padding:.25rem .7rem;font-size:.78rem;font-family:var(--display);font-weight:500}
+.pet .body{padding:1.1rem 1.2rem 1.25rem;display:grid;gap:.55rem;min-width:0}
+.pet h3{font-size:1.35rem;display:flex;align-items:baseline;justify-content:space-between;gap:.5rem}
+.pet h3 small{font-family:var(--body);font-weight:400;color:var(--ink-3);font-size:.85rem;white-space:nowrap}
+.pet .meta{display:flex;flex-wrap:wrap;gap:.35rem .8rem;font-size:.86rem;color:var(--ink-2)}
+.pet .meta span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--dog);margin-right:.45rem;vertical-align:.15em}
+.pet p{color:var(--ink-2);font-size:.95rem;overflow-wrap:anywhere}
+.pet .btn{margin-top:.4rem;justify-content:center}
+.empty{grid-column:1/-1;padding:2.5rem;text-align:center;color:var(--ink-3);border:1.5px dashed var(--line);border-radius:var(--r)}
+
+/* Mapa esquemático */
+.map-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:start}
+@media (max-width:860px){.map-wrap{grid-template-columns:1fr}}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(58px,auto);gap:6px;background:var(--line);padding:6px;border-radius:calc(var(--r) + 4px)}
+.tile{border:0;border-radius:12px;padding:.5rem .6rem;text-align:left;display:flex;flex-direction:column;justify-content:flex-end;gap:.15rem;min-width:0;min-height:58px;color:var(--ink);font-family:var(--display);font-weight:500;font-size:.86rem;line-height:1.15;background:var(--card);position:relative;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+.tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);z-index:1}
+.tile[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:-3px}
+.tile small{font-family:var(--body);font-weight:400;font-size:.7rem;color:var(--ink-2)}
+.tile::before{content:"";width:10px;height:10px;border-radius:50%;position:absolute;top:.55rem;right:.55rem}
+.tile.go{background:var(--go-soft)} .tile.go::before{background:var(--go)}
+.tile.wait{background:var(--wait-soft)} .tile.wait::before{background:var(--wait)}
+.tile.stop{background:var(--stop-soft)} .tile.stop::before{background:var(--stop)}
+.compass{grid-column:1/-1;display:flex;justify-content:space-between;font-size:.7rem;color:var(--ink-3);font-family:var(--display);letter-spacing:.08em;text-transform:uppercase;padding:0 .3rem}
+.legend{display:grid;gap:.6rem;margin-bottom:1.4rem}
+.legend div{display:flex;align-items:center;gap:.6rem;font-size:.95rem;color:var(--ink-2)}
+.legend i{width:14px;height:14px;border-radius:50%;flex:none}
+.zone-info{background:var(--card);border-radius:var(--r);padding:1.3rem 1.4rem;box-shadow:var(--shadow);display:grid;gap:.5rem;min-height:150px}
+.zone-info h3{font-size:1.3rem}
+.zone-info .status{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.3rem .8rem;font-family:var(--display);font-weight:500;font-size:.85rem;width:max-content;max-width:100%}
+.status.go{background:var(--go-soft);color:var(--go)} .status.wait{background:var(--wait-soft);color:var(--wait)} .status.stop{background:var(--stop-soft);color:var(--stop)}
+.zone-info p{color:var(--ink-2);font-size:.95rem}
+.fine{font-size:.82rem;color:var(--ink-3);margin-top:1rem;max-width:60ch}
+
+/* Formulario */
+.form-card{background:var(--card);border-radius:calc(var(--r) + 6px);box-shadow:var(--shadow);padding:clamp(1.3rem,4vw,2.4rem);max-width:720px;margin:0 auto}
+.progress{display:flex;align-items:center;justify-content:space-between;gap:.4rem;margin-bottom:1.8rem}
+.progress .p{display:flex;flex-direction:column;align-items:center;gap:.3rem;font-size:.74rem;font-family:var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);flex:1;min-width:0;text-align:center}
+.progress .p .paw{width:30px;height:30px;color:var(--line);transition:color .3s ease-out,transform .3s cubic-bezier(.2,.8,.2,1)}
+.progress .p.done .paw,.progress .p.now .paw{color:var(--dog)}
+.progress .p.now .paw{transform:scale(1.18)}
+.progress .p.now{color:var(--ink)}
+.progress .line{height:2px;flex:1;background:var(--line);max-width:80px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:1.1rem}
+fieldset[hidden]{display:none}
+legend{font-family:var(--display);font-weight:600;font-size:1.45rem;margin-bottom:.9rem;padding:0}
+label{display:grid;gap:.35rem;font-size:.92rem;font-weight:600;color:var(--ink-2)}
+input,select,textarea{font:inherit;font-size:16px;padding:.75rem .9rem;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);min-height:48px;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--dog);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--dog) 25%,transparent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.radio{display:flex;flex-wrap:wrap;gap:.5rem}
+.radio label{flex-direction:row;align-items:center;gap:.5rem;border:1.5px solid var(--line);border-radius:999px;padding:.5rem .9rem;min-height:44px;font-weight:500;cursor:pointer;display:inline-flex}
+.radio input{width:auto;min-height:0;accent-color:var(--dog)}
+.radio label:has(:checked){border-color:var(--dog);background:var(--dog-soft);color:var(--ink)}
+.zone-result{border-radius:14px;padding:1rem 1.1rem;display:none;gap:.3rem;font-size:.95rem}
+.zone-result.go{display:grid;background:var(--go-soft);color:var(--ink)} .zone-result.wait{display:grid;background:var(--wait-soft)} .zone-result.stop{display:grid;background:var(--stop-soft)}
+.zone-result strong{font-family:var(--display);font-weight:600}
+.actions{display:flex;justify-content:space-between;gap:.8rem;margin-top:1.6rem;flex-wrap:wrap}
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem}
+.pick{border:1.5px solid var(--line);background:var(--paper);border-radius:14px;padding:.7rem;display:grid;gap:.4rem;justify-items:center;text-align:center;min-height:44px;color:var(--ink);transition:border-color .18s,background .18s,transform .18s cubic-bezier(.2,.8,.2,1)}
+.pick:hover{transform:translateY(-2px)}
+.pick .av{width:72px;height:60px;border-radius:12px;display:grid;place-items:center;overflow:hidden}
+.pick .av svg{width:80%;height:auto}
+.pick strong{font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.1}
+.pick small{color:var(--ink-3);font-size:.78rem}
+.pick[aria-checked="true"]{border-color:var(--dog);background:var(--dog-soft);box-shadow:0 0 0 3px color-mix(in srgb,var(--dog) 25%,transparent)}
+.pick.any .av{background:var(--line);color:var(--ink-2);font-size:1.6rem}
+.chosen{display:flex;align-items:center;gap:.8rem;background:var(--dog-soft);border-radius:14px;padding:.6rem .9rem;margin-bottom:1rem;font-size:.95rem}
+.chosen .av{width:48px;height:40px;border-radius:10px;display:grid;place-items:center;overflow:hidden;flex:none}
+.chosen .av svg{width:80%}
+.chosen button{margin-left:auto;background:none;border:0;color:var(--dog-deep);font-weight:600;min-height:44px;padding:0 .4rem}
+.done{display:none;text-align:center;padding:2rem 0 1rem;gap:1rem}
+.done.show{display:grid;justify-items:center}
+.done svg{width:120px;height:120px}
+.done h3{font-size:1.8rem}
+.done p{color:var(--ink-2);max-width:40ch}
+.err{color:var(--stop);font-size:.85rem;font-weight:600;display:none}
+.err.show{display:block}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding-block:2.5rem;color:var(--ink-3);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+.fp-heart{position:absolute;right:-6%;top:6%;width:min(52vw,420px);opacity:.09;pointer-events:none;color:var(--ink)}
+
+/* Reveal al hacer scroll (desde estado visible) */
+.rv{transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s ease-out}
+.js .rv{opacity:0;transform:translateY(14px)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1;transform:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pawicon" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="15.5" rx="5.2" ry="4.6"/>
+    <ellipse cx="5.2" cy="10.5" rx="2.2" ry="2.8" transform="rotate(-20 5.2 10.5)"/>
+    <ellipse cx="9.3" cy="6.3" rx="2.2" ry="2.9" transform="rotate(-8 9.3 6.3)"/>
+    <ellipse cx="14.7" cy="6.3" rx="2.2" ry="2.9" transform="rotate(8 14.7 6.3)"/>
+    <ellipse cx="18.8" cy="10.5" rx="2.2" ry="2.8" transform="rotate(20 18.8 10.5)"/>
+  </symbol>
+  <symbol id="logo" viewBox="0 0 64 64">
+    <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path d="M32 58 C10 42 4 30 4 20 A13 13 0 0 1 32 12 A13 13 0 0 1 60 20 C60 30 54 42 32 58Z"/>
+      <path d="M32 50 C16 38 11 29 11 21 A9 9 0 0 1 32 17 A9 9 0 0 1 53 21 C53 29 48 38 32 50Z" stroke-dasharray="6 3"/>
+      <path d="M32 42 C22 34 18 28 18 22 A6 6 0 0 1 32 21 A6 6 0 0 1 46 22 C46 28 42 34 32 42Z" stroke-dasharray="4 3"/>
+    </g>
+    <ellipse cx="32" cy="31" rx="7" ry="6" fill="#D8782E"/>
+    <circle cx="27" cy="28" r="1.3" fill="#1F1B18"/><circle cx="37" cy="28" r="1.3" fill="#1F1B18"/>
+    <path d="M29 33 Q32 36 35 33" fill="none" stroke="#1F1B18" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><svg><use href="#logo"/></svg>Adopción Huellita Feliz</a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#como">Cómo funciona</a>
+      <a href="#catalogo">Peluditos</a>
+      <a href="#zonas">Zonas</a>
+      <a href="#adoptar">Adoptar</a>
+    </nav>
+    <a class="btn" href="#adoptar"><svg class="paw"><use href="#pawicon"/></svg>Quiero adoptar</a>
+  </div>
+</header>
+
+<!-- ===================== INTRO ===================== -->
+<section class="intro" id="inicio" aria-label="Historia de un rescate">
+  <div class="stage">
+    <div class="sky" id="sky"></div>
+    <div class="trail" id="trail" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="scene-art" aria-hidden="true">
+        <svg viewBox="0 0 400 360" id="dogsvg">
+          <defs>
+            <clipPath id="puddleclip"><rect x="0" y="0" width="400" height="360"/></clipPath>
+          </defs>
+          <!-- sol -->
+          <g id="sun" opacity="0"><circle cx="330" cy="70" r="34" fill="#FFC861"/><circle cx="330" cy="70" r="46" fill="#FFC861" opacity=".25"/></g>
+          <!-- lluvia -->
+          <g id="rain" stroke="#8E8984" stroke-width="2" stroke-linecap="round" opacity=".7">
+            <line x1="60" y1="20" x2="52" y2="46"/><line x1="120" y1="0" x2="112" y2="26"/><line x1="180" y1="30" x2="172" y2="56"/>
+            <line x1="250" y1="10" x2="242" y2="36"/><line x1="320" y1="40" x2="312" y2="66"/><line x1="370" y1="0" x2="362" y2="26"/>
+            <line x1="30" y1="90" x2="22" y2="116"/><line x1="290" y1="110" x2="282" y2="136"/><line x1="200" y1="100" x2="192" y2="126"/>
+          </g>
+          <!-- calle -->
+          <rect id="street" x="-40" y="290" width="480" height="70" rx="6" fill="#7A7570"/>
+          <path id="curb" d="M-40 290 H440" stroke="#5B5652" stroke-width="4"/>
+          <!-- caja de cartón (calle) -->
+          <g id="box" opacity="1"><path d="M40 292 L60 240 H150 L170 292Z" fill="#B59360"/><path d="M60 240 H150 L140 228 H70Z" fill="#9E7F50"/></g>
+          <!-- charco -->
+          <ellipse id="puddle" cx="300" cy="300" rx="60" ry="8" fill="#A5A09B" opacity=".8"/>
+          <!-- cama y casa (hogar) -->
+          <g id="home" opacity="0"><ellipse cx="200" cy="300" rx="120" ry="16" fill="#C9865A"/><ellipse cx="200" cy="296" rx="100" ry="10" fill="#E8B48E"/></g>
+          <!-- mano que ayuda -->
+          <g id="hand" opacity="0" transform="translate(300,140) rotate(20)">
+            <path d="M0 0 C-10 -30 -6 -60 2 -62 C8 -64 10 -40 9 -24 C14 -46 20 -58 26 -56 C32 -54 30 -34 26 -18 C34 -38 42 -44 46 -40 C50 -36 44 -18 38 -6 C48 -18 56 -20 58 -16 C60 -12 54 0 44 10 C34 22 16 30 4 24Z" fill="#E7B08E"/>
+          </g>
+          <!-- PERRO -->
+          <g id="dog" transform="translate(200,240)">
+            <!-- cola -->
+            <path id="tail" d="M-62 -6 Q-90 -4 -92 10" stroke="#8A8580" stroke-width="12" stroke-linecap="round" fill="none"/>
+            <!-- patas traseras -->
+            <rect id="legb1" x="-58" y="20" width="18" height="40" rx="8" fill="#8A8580"/>
+            <rect id="legb2" x="-36" y="20" width="18" height="40" rx="8" fill="#8A8580"/>
+            <!-- cuerpo -->
+            <ellipse id="body" cx="-10" cy="10" rx="64" ry="38" fill="#8A8580"/>
+            <!-- costillas (delgado) -->
+            <g id="ribs" stroke="#6F6A66" stroke-width="3" opacity=".6" stroke-linecap="round"><path d="M-30 -6 q-4 14 0 28"/><path d="M-18 -8 q-4 16 0 32"/><path d="M-6 -8 q-4 16 0 32"/></g>
+            <!-- patas delanteras -->
+            <rect id="legf1" x="12" y="18" width="18" height="42" rx="8" fill="#8A8580"/>
+            <rect id="legf2" x="34" y="18" width="18" height="42" rx="8" fill="#8A8580"/>
+            <!-- collar -->
+            <g id="collar" opacity="0"><path d="M30 -14 q22 20 46 4" stroke="#B5433B" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M58 -6 l5 -6 l5 6 l-5 7Z" fill="#FFC861"/></g>
+            <!-- cabeza -->
+            <g id="head" transform="translate(58,-20) rotate(18)">
+              <ellipse id="ear1" cx="-26" cy="-8" rx="12" ry="26" fill="#6F6A66" transform="rotate(14 -26 -8)"/>
+              <ellipse id="ear2" cx="20" cy="-12" rx="12" ry="26" fill="#6F6A66" transform="rotate(26 20 -12)"/>
+              <ellipse id="face" cx="0" cy="0" rx="40" ry="36" fill="#8A8580"/>
+              <ellipse id="muzzle" cx="12" cy="12" rx="22" ry="16" fill="#A8A39E"/>
+              <ellipse cx="26" cy="6" rx="7" ry="5.5" fill="#2A2522"/>
+              <g id="eyes">
+                <ellipse id="eye1" cx="-12" cy="-6" rx="5" ry="6" fill="#2A2522"/>
+                <ellipse id="eye2" cx="12" cy="-10" rx="5" ry="6" fill="#2A2522"/>
+                <circle cx="-10.5" cy="-8" r="1.6" fill="#fff"/><circle cx="13.5" cy="-12" r="1.6" fill="#fff"/>
+              </g>
+              <g id="brows" stroke="#2A2522" stroke-width="3" stroke-linecap="round" fill="none">
+                <path id="brow1" d="M-20 -17 q8 4 14 1"/><path id="brow2" d="M6 -22 q6 -3 12 1"/>
+              </g>
+              <path id="mouth" d="M4 24 Q14 20 24 24" stroke="#2A2522" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path id="tongue" d="M12 26 q6 12 12 0" fill="#E37B86" opacity="0"/>
+              <!-- lágrima -->
+              <path id="tear" d="M-14 2 q-4 8 0 10 q4 -2 0 -10Z" fill="#7FA8D6" opacity=".9"/>
+              <!-- suciedad -->
+              <g id="dirt" fill="#5B5652" opacity=".55"><circle cx="-24" cy="12" r="4"/><circle cx="-6" cy="22" r="3"/><circle cx="30" cy="-14" r="3.5"/></g>
+            </g>
+            <!-- corazón flotante -->
+            <path id="heart" d="M80 -70 c-6 -12 -24 -8 -22 6 c2 10 14 16 22 24 c8 -8 20 -14 22 -24 c2 -14 -16 -18 -22 -6Z" fill="#D8782E" opacity="0"/>
+          </g>
+        </svg>
+      </div>
+      <div class="captions" id="captions">
+        <div class="cap">
+          <span class="eyebrow">Capítulo 1 · La calle</span>
+          <h1>Así lo encontramos.</h1>
+          <p>Con frío, con hambre y sin nombre. En Bogotá hay miles como él. La historia de cada peludito de esta fundación empieza aquí.</p>
+        </div>
+        <div class="cap">
+          <span class="eyebrow">Capítulo 2 · El rescate</span>
+          <h2>Alguien se detuvo.</h2>
+          <p>Una llamada, una cobija y un viaje al veterinario. El rescate es el primer paso; el camino apenas comienza.</p>
+        </div>
+        <div class="cap">
+          <span class="eyebrow">Capítulo 3 · Recuperación</span>
+          <h2>Comida, cuidado y tiempo.</h2>
+          <p>Vacunas, desparasitación, esterilización y muchas siestas. Con cada semana recupera peso, pelo y confianza.</p>
+        </div>
+        <div class="cap">
+          <span class="eyebrow">Capítulo 4 · Un hogar</span>
+          <h2>Ahora solo le falta tu huella.</h2>
+          <p>Está sano, feliz y listo para una familia. Tu huella y la suya hacen un mismo corazón.</p>
+          <a class="btn" href="#catalogo"><svg class="paw"><use href="#pawicon"/></svg>Conocer a los peluditos</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" id="hint"><svg class="paw"><use href="#pawicon"/></svg>Desliza para seguir sus pasos</div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section class="block" id="como">
+  <div class="wrap" style="position:relative">
+    <svg class="fp-heart" viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>
+    <div class="sec-head rv">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Tres pasos, tres huellas.</h2>
+      <p class="lead">Diseñamos el proceso para que ninguna solicitud quede sin respuesta y para que cada animal llegue a un hogar donde pueda estar bien.</p>
+    </div>
+    <div class="steps">
+      <article class="step rv"><svg class="mark"><use href="#pawicon"/></svg><h3>Elige a tu peludito</h3><p>Mira el catálogo y escoge a quien quieres conocer. Si aún no sabes, la fundación te orienta según tu hogar.</p><p class="note">Cuando quieras.</p></article>
+      <article class="step rv"><svg class="mark"><use href="#pawicon"/></svg><h3>Confirma tu zona</h3><p>Te decimos de inmediato si entregamos en tu localidad y barrio, antes de que llenes el resto.</p><p class="note">10 segundos.</p></article>
+      <article class="step rv"><svg class="mark"><use href="#pawicon"/></svg><h3>Cuéntanos del hogar</h3><p>Datos de la casa, tu tiempo y quién vive contigo. Respuesta automática al instante, revisión humana en 72 horas y visita para que se conozcan.</p><p class="note">5 minutos.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CATÁLOGO ===================== -->
+<section class="block" id="catalogo" style="background:var(--card)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Peluditos en adopción</span>
+      <h2>Todos tienen nombre. Les falta apellido.</h2>
+      <p class="lead">Cada uno ya está esterilizado, vacunado y desparasitado. Las fotos de esta vista son ilustrativas; en el sitio real van las fotos de la fundación.</p>
+    </div>
+    <div class="filters rv" role="group" aria-label="Filtros">
+      <button class="chip" data-f="all" aria-pressed="true">Todos</button>
+      <button class="chip" data-f="perro" aria-pressed="false">Perros</button>
+      <button class="chip" data-f="gato" aria-pressed="false">Gatos</button>
+      <button class="chip" data-f="cachorro" aria-pressed="false">Cachorros</button>
+      <button class="chip" data-f="pequeno" aria-pressed="false">Tamaño pequeño</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ===================== ZONAS ===================== -->
+<section class="block" id="zonas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Zonas de entrega en Bogotá</span>
+      <h2>Entregamos donde un peludito puede estar bien.</h2>
+      <p class="lead">No hacemos entregas en zonas con sobrepoblación de animales en calle: ahí el riesgo de abandono es más alto y la fundación no puede hacer seguimiento. Toca una localidad para ver su estado.</p>
+    </div>
+    <div class="map-wrap">
+      <div class="rv">
+        <div class="tiles" id="tiles" role="group" aria-label="Mapa esquemático de localidades de Bogotá">
+          <div class="compass"><span>Occidente</span><span>Norte ↑</span><span>Oriente · cerros</span></div>
+        </div>
+        <p class="fine">Mapa esquemático: la posición de cada localidad es aproximada. En la versión final se muestra el mapa real por UPZ y tu dirección se verifica automáticamente.</p>
+      </div>
+      <div class="rv">
+        <div class="legend">
+          <div><i style="background:var(--go)"></i>Entrega activa</div>
+          <div><i style="background:var(--wait)"></i>Depende del barrio: se confirma con tu dirección</div>
+          <div><i style="background:var(--stop)"></i>Sin entregas: sobrepoblación de animales en calle</div>
+        </div>
+        <div class="zone-info" id="zoneinfo" aria-live="polite">
+          <h3>Elige una localidad</h3>
+          <p>Verás si entregamos ahí y qué necesitas para aplicar.</p>
+        </div>
+        <p class="fine">El estado de cada zona lo define la fundación según la población de animales en calle y puede cambiar. En Suba y Kennedy la decisión se toma barrio por barrio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMULARIO ===================== -->
+<section class="block" id="adoptar" style="background:var(--dog-soft)">
+  <div class="wrap">
+    <div class="sec-head rv" style="margin-inline:auto;text-align:center">
+      <span class="eyebrow">Solicitud de adopción</span>
+      <h2>Deja tu huella.</h2>
+      <p class="lead" style="margin-inline:auto">Tres pasos cortos. Al enviar recibes confirmación por WhatsApp y la fundación te responde en máximo 72 horas.</p>
+    </div>
+    <form class="form-card rv" id="form" novalidate>
+      <div class="progress" aria-label="Progreso">
+        <div class="p now" data-s="1"><svg class="paw"><use href="#pawicon"/></svg>Peludito</div><div class="line"></div>
+        <div class="p" data-s="2"><svg class="paw"><use href="#pawicon"/></svg>Zona</div><div class="line"></div>
+        <div class="p" data-s="3"><svg class="paw"><use href="#pawicon"/></svg>Tu hogar</div>
+      </div>
+
+      <fieldset id="s1">
+        <legend>¿A quién quieres adoptar?</legend>
+        <div class="picker" id="picker" role="radiogroup" aria-label="Elige un peludito"></div>
+        <input type="hidden" id="f-pet" name="peludito" value="">
+        <p class="err" id="e0">Elige un peludito, o la opción de orientación si aún no sabes.</p>
+        <div class="actions"><a class="btn ghost" href="#catalogo">Ver el catálogo completo</a><button type="button" class="btn" id="n0">Siguiente <svg class="paw"><use href="#pawicon"/></svg></button></div>
+      </fieldset>
+
+      <fieldset id="s2" hidden>
+        <legend id="leg2">¿Dónde vivirá?</legend>
+        <div class="row">
+          <label>Localidad
+            <select id="f-loc" name="localidad" required><option value="">Elige tu localidad</option></select>
+          </label>
+          <label>Barrio
+            <input id="f-barrio" name="barrio" type="text" placeholder="Ej. Cedritos" autocomplete="address-level3">
+          </label>
+        </div>
+        <div class="zone-result" id="zoneresult"></div>
+        <label>Tipo de vivienda
+          <div class="radio">
+            <label><input type="radio" name="vivienda" value="casa" id="v1">Casa</label>
+            <label><input type="radio" name="vivienda" value="apto" id="v2">Apartamento</label>
+            <label><input type="radio" name="vivienda" value="finca" id="v3">Finca o lote</label>
+          </div>
+        </label>
+        <p class="err" id="e1">Elige tu localidad y tipo de vivienda para continuar.</p>
+        <div class="actions"><button type="button" class="btn ghost" id="b1">Atrás</button><button type="button" class="btn" id="n1">Siguiente <svg class="paw"><use href="#pawicon"/></svg></button></div>
+      </fieldset>
+
+      <fieldset id="s3" hidden>
+        <legend id="leg3">Cuéntanos del hogar que lo recibirá</legend>
+        <div class="row">
+          <label>Tu nombre<input id="f-nombre" name="nombre" type="text" autocomplete="name" required></label>
+          <label>WhatsApp<input id="f-tel" name="telefono" type="tel" inputmode="tel" placeholder="300 000 0000" autocomplete="tel" required></label>
+        </div>
+        <label>¿Cuántas horas al día estará solo el animal?
+          <div class="radio">
+            <label><input type="radio" name="horas" value="0-4" id="h1">0 a 4</label>
+            <label><input type="radio" name="horas" value="4-8" id="h2">4 a 8</label>
+            <label><input type="radio" name="horas" value="8+" id="h3">Más de 8</label>
+          </div>
+        </label>
+        <label>¿Viven otros animales contigo?
+          <div class="radio">
+            <label><input type="radio" name="otros" value="no" id="o1">No</label>
+            <label><input type="radio" name="otros" value="si-ester" id="o2">Sí, esterilizados</label>
+            <label><input type="radio" name="otros" value="si-no" id="o3">Sí, sin esterilizar</label>
+          </div>
+        </label>
+        <label>Si vives en arriendo, ¿el propietario permite mascotas?
+          <div class="radio">
+            <label><input type="radio" name="arriendo" value="propia" id="a1">Vivienda propia</label>
+            <label><input type="radio" name="arriendo" value="si" id="a2">Sí, lo permite</label>
+            <label><input type="radio" name="arriendo" value="nose" id="a3">No lo he preguntado</label>
+          </div>
+        </label>
+        <label>¿Por qué quieres adoptar? (opcional)
+          <textarea id="f-why" name="motivo" rows="3" placeholder="Cuéntanos un poco de ti y de tu familia"></textarea>
+        </label>
+        <label class="radio"><label><input type="checkbox" id="f-ok" name="habeas">Autorizo el tratamiento de mis datos para gestionar esta solicitud (Ley 1581 de 2012).</label></label>
+        <p class="err" id="e2">Completa nombre, WhatsApp, las tres preguntas y la autorización de datos.</p>
+        <div class="actions"><button type="button" class="btn ghost" id="b2">Atrás</button><button type="submit" class="btn" id="send">Enviar solicitud <svg class="paw"><use href="#pawicon"/></svg></button></div>
+      </fieldset>
+
+      <div class="done" id="done" aria-live="polite">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg>
+        <h3 id="done-title">¡Tu huella quedó registrada!</h3>
+        <p id="done-text">Te escribimos por WhatsApp en los próximos minutos con el número de tu solicitud. La fundación la revisa en máximo 72 horas.</p>
+        <button type="button" class="btn ghost" id="again">Enviar otra solicitud</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><strong style="font-family:var(--display)">Adopción Huellita Feliz</strong> · Bogotá, Colombia<br>Fundación de rescate y adopción de perros y gatos.</div>
+    <div>Prototipo de sitio · Las fotos y nombres de los peluditos son de ejemplo.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Datos de ejemplo ---------- */
+  var PETS = [
+    {n:'Canela', t:'perro', edad:'2 años', tam:'mediano', sexo:'hembra', c:'#D8782E', d:'Rescatada en Suba. Tranquila, le encanta caminar y se lleva bien con gatos.', tags:['perro']},
+    {n:'Mojito', t:'gato', edad:'8 meses', tam:'pequeño', sexo:'macho', c:'#8A8580', d:'Curioso y juguetón. Ideal para apartamento. Ya usa arenero.', tags:['gato','cachorro','pequeno']},
+    {n:'Tomás', t:'perro', edad:'5 años', tam:'grande', sexo:'macho', c:'#5B4A3C', d:'Un abuelo cariñoso que solo quiere un sofá. Perfecto para una familia calmada.', tags:['perro']},
+    {n:'Luna', t:'perro', edad:'4 meses', tam:'pequeño', sexo:'hembra', c:'#E6C9A8', d:'Cachorra criolla, enérgica y muy lista. Necesita alguien con tiempo para educarla.', tags:['perro','cachorro','pequeno']},
+    {n:'Frida', t:'gato', edad:'3 años', tam:'pequeño', sexo:'hembra', c:'#2A2522', d:'Independiente pero mimosa en las noches. Prefiere ser la única gata de la casa.', tags:['gato','pequeno']},
+    {n:'Bruno', t:'perro', edad:'1 año', tam:'mediano', sexo:'macho', c:'#B9834F', d:'Sobrevivió a un atropello y hoy corre como si nada. Fiel y protector.', tags:['perro']}
+  ];
+  function petSVG(p){
+    if(p.t==='gato') return '<svg viewBox="0 0 120 100" aria-hidden="true"><path d="M30 40 L24 12 L46 30 Z" fill="'+p.c+'"/><path d="M90 40 L96 12 L74 30 Z" fill="'+p.c+'"/><ellipse cx="60" cy="56" rx="38" ry="34" fill="'+p.c+'"/><ellipse cx="46" cy="52" rx="4" ry="6" fill="#fff"/><ellipse cx="74" cy="52" rx="4" ry="6" fill="#fff"/><ellipse cx="46" cy="53" rx="2" ry="4.5" fill="#1F1B18"/><ellipse cx="74" cy="53" rx="2" ry="4.5" fill="#1F1B18"/><path d="M56 64 l4 4 l4 -4Z" fill="#E37B86"/><path d="M60 68 q-6 6 -10 2 M60 68 q6 6 10 2" stroke="#1F1B18" stroke-width="2" fill="none" stroke-linecap="round"/><g stroke="#1F1B18" stroke-width="1.5" opacity=".6"><line x1="22" y1="62" x2="44" y2="66"/><line x1="22" y1="70" x2="44" y2="70"/><line x1="98" y1="62" x2="76" y2="66"/><line x1="98" y1="70" x2="76" y2="70"/></g></svg>';
+    return '<svg viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="28" cy="48" rx="12" ry="26" fill="'+p.c+'" transform="rotate(10 28 48)" opacity=".85"/><ellipse cx="92" cy="48" rx="12" ry="26" fill="'+p.c+'" transform="rotate(-10 92 48)" opacity=".85"/><ellipse cx="60" cy="54" rx="38" ry="36" fill="'+p.c+'"/><ellipse cx="60" cy="68" rx="20" ry="14" fill="#fff" opacity=".85"/><ellipse cx="60" cy="62" rx="7" ry="5.5" fill="#1F1B18"/><circle cx="46" cy="46" r="5" fill="#1F1B18"/><circle cx="74" cy="46" r="5" fill="#1F1B18"/><circle cx="47.5" cy="44.5" r="1.6" fill="#fff"/><circle cx="75.5" cy="44.5" r="1.6" fill="#fff"/><path d="M50 74 q10 8 20 0" stroke="#1F1B18" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M56 76 q4 9 8 0" fill="#E37B86"/></svg>';
+  }
+  var grid=document.getElementById('grid');
+  function renderPets(f){
+    var list=PETS.filter(function(p){return f==='all'||p.tags.indexOf(f)>-1;});
+    grid.innerHTML = list.length ? list.map(function(p,i){
+      return '<article class="pet rv in" style="--i:'+i+'"><div class="photo" style="background:color-mix(in srgb,'+p.c+' 18%,var(--paper))"><span class="tag">'+(p.t==='gato'?'Gato':'Perro')+'</span>'+petSVG(p)+'</div><div class="body"><h3>'+p.n+'<small>'+p.edad+'</small></h3><div class="meta"><span>'+p.tam+'</span><span>'+p.sexo+'</span><span>esterilizad'+(p.sexo==='hembra'?'a':'o')+'</span></div><p>'+p.d+'</p><a class="btn" href="#adoptar" data-pet="'+p.n+'"><svg class="paw"><use href="#pawicon"/></svg>Quiero conocer a '+p.n+'</a></div></article>';
+    }).join('') : '<div class="empty">Por ahora no hay peluditos con ese filtro. Vuelve pronto o déjanos tu solicitud y te avisamos.</div>';
+  }
+  renderPets('all');
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed','true'); renderPets(c.dataset.f);
+    });
+  });
+  /* ---------- Selector de peludito (paso 1) ---------- */
+  var petInput=document.getElementById('f-pet'), picker=document.getElementById('picker');
+  function renderPicker(){
+    picker.innerHTML = PETS.map(function(p){
+      return '<button type="button" class="pick" role="radio" aria-checked="false" data-pick="'+p.n+'"><span class="av" style="background:color-mix(in srgb,'+p.c+' 18%,var(--paper))">'+petSVG(p)+'</span><strong>'+p.n+'</strong><small>'+(p.t==='gato'?'Gato':'Perro')+' · '+p.edad+'</small></button>';
+    }).join('') + '<button type="button" class="pick any" role="radio" aria-checked="false" data-pick="orientacion"><span class="av">?</span><strong>Aún no sé</strong><small>Quiero que me orienten</small></button>';
+  }
+  renderPicker();
+  function choosePet(name){
+    petInput.value=name;
+    picker.querySelectorAll('.pick').forEach(function(b){b.setAttribute('aria-checked',String(b.dataset.pick===name));});
+    document.getElementById('e0').classList.remove('show');
+    var p=PETS.filter(function(x){return x.n===name})[0];
+    var who = p ? (p.sexo==='hembra'?'a ':'a ')+p.n : 'al peludito';
+    document.getElementById('leg2').textContent = p ? '¿Dónde vivirá '+p.n+'?' : '¿Dónde vivirá?';
+    document.getElementById('leg3').textContent = p ? 'Cuéntanos del hogar que recibirá '+who : 'Cuéntanos del hogar que lo recibirá';
+  }
+  picker.addEventListener('click',function(e){var b=e.target.closest('[data-pick]'); if(b) choosePet(b.dataset.pick);});
+  grid.addEventListener('click',function(e){
+    var a=e.target.closest('[data-pet]'); if(!a) return;
+    choosePet(a.dataset.pet); show(1);
+  });
+
+  /* ---------- Localidades (cartograma) ---------- */
+  var ZONES = [
+    {n:'Suba', s:'wait', c:'1/3', r:'1/3', note:'Depende del barrio: en algunos sectores de Suba hay sobrepoblación de animales en calle. Dinos tu barrio y te confirmamos.'},
+    {n:'Usaquén', s:'go', c:'3/5', r:'1/3', note:'Entrega activa. Visita de verificación en la primera semana.'},
+    {n:'Engativá', s:'go', c:'1/2', r:'3/4', note:'Entrega activa.'},
+    {n:'Barrios Unidos', s:'go', c:'2/3', r:'3/4', note:'Entrega activa.'},
+    {n:'Chapinero', s:'go', c:'3/5', r:'3/4', note:'Entrega activa. Muchos apartamentos: pedimos foto del balcón o ventanas con malla.'},
+    {n:'Fontibón', s:'go', c:'1/2', r:'4/5', note:'Entrega activa.'},
+    {n:'Teusaquillo', s:'go', c:'2/3', r:'4/5', note:'Entrega activa.'},
+    {n:'Santa Fe', s:'go', c:'3/4', r:'4/5', note:'Entrega activa.'},
+    {n:'La Candelaria', s:'go', c:'4/5', r:'4/5', note:'Entrega activa.'},
+    {n:'Kennedy', s:'wait', c:'1/2', r:'5/6', note:'Depende del barrio: en algunos sectores de Kennedy hay sobrepoblación de animales en calle. Dinos tu barrio y te confirmamos.'},
+    {n:'Puente Aranda', s:'go', c:'2/3', r:'5/6', note:'Entrega activa.'},
+    {n:'Los Mártires', s:'go', c:'3/4', r:'5/6', note:'Entrega activa.'},
+    {n:'San Cristóbal', s:'go', c:'4/5', r:'5/7', note:'Entrega activa.'},
+    {n:'Bosa', s:'stop', c:'1/2', r:'6/7', note:'Sin entregas: zona con sobrepoblación de animales en calle. Puedes aplicar como hogar de paso o voluntario.'},
+    {n:'Tunjuelito', s:'stop', c:'2/3', r:'6/7', note:'Sin entregas: zona con sobrepoblación de animales en calle.'},
+    {n:'Antonio Nariño', s:'go', c:'3/4', r:'6/7', note:'Entrega activa.'},
+    {n:'Ciudad Bolívar', s:'stop', c:'1/3', r:'7/8', note:'Sin entregas: zona con sobrepoblación de animales en calle. Aquí la fundación prioriza jornadas de esterilización.'},
+    {n:'Usme', s:'stop', c:'3/4', r:'7/8', note:'Sin entregas: zona con sobrepoblación de animales en calle.'},
+    {n:'Rafael Uribe Uribe', s:'go', c:'4/5', r:'7/8', note:'Entrega activa.'},
+    {n:'Soacha', s:'stop', c:'1/3', r:'8/9', note:'Municipio vecino. Sin entregas: zona con sobrepoblación de animales en calle.'},
+    {n:'Sumapaz', s:'wait', c:'3/5', r:'8/9', note:'Zona rural. Se revisa caso a caso.'}
+  ];
+  var LABEL={go:'Entrega activa',wait:'Depende del barrio',stop:'Sin entregas'};
+  var tiles=document.getElementById('tiles'), zi=document.getElementById('zoneinfo');
+  ZONES.forEach(function(z){
+    var b=document.createElement('button'); b.type='button'; b.className='tile '+z.s; b.style.gridColumn=z.c; b.style.gridRow=z.r; b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span>'+z.n+'</span><small>'+LABEL[z.s]+'</small>';
+    b.addEventListener('click',function(){
+      tiles.querySelectorAll('.tile').forEach(function(t){t.setAttribute('aria-pressed','false')}); b.setAttribute('aria-pressed','true');
+      zi.innerHTML='<h3>'+z.n+'</h3><span class="status '+z.s+'"><svg class="paw"><use href="#pawicon"/></svg>'+LABEL[z.s]+'</span><p>'+z.note+'</p>'+(z.s!=='stop'?'<a class="btn" href="#adoptar" data-loc="'+z.n+'" style="width:max-content;margin-top:.4rem">Aplicar desde '+z.n+'</a>':'');
+    });
+    tiles.appendChild(b);
+  });
+  zi.addEventListener('click',function(e){var a=e.target.closest('[data-loc]'); if(a){loc.value=a.dataset.loc; loc.dispatchEvent(new Event('change'));}});
+  var loc=document.getElementById('f-loc');
+  ZONES.forEach(function(z){var o=document.createElement('option');o.value=z.n;o.textContent=z.n;loc.appendChild(o);});
+  var zr=document.getElementById('zoneresult');
+  loc.addEventListener('change',function(){
+    var z=ZONES.filter(function(x){return x.n===loc.value})[0];
+    zr.className='zone-result'; if(!z) return;
+    zr.classList.add(z.s);
+    var msg={go:'Entregamos en '+z.n+'. Puedes continuar con tu solicitud.',wait:'En '+z.n+' depende del barrio. Escribe tu barrio arriba y continúa; la fundación te confirma antes de la visita.',stop:'No entregamos en '+z.n+' por la sobrepoblación de animales en calle. Puedes dejar tus datos para avisarte si cambia, o aplicar como hogar de paso.'}[z.s];
+    zr.innerHTML='<strong>'+LABEL[z.s]+'</strong><span>'+msg+'</span>';
+  });
+
+  /* ---------- Formulario por pasos (huellas) ---------- */
+  var step=1, steps=[null,document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3')];
+  function show(n){
+    step=n; for(var i=1;i<=3;i++){steps[i].hidden=(i!==n);}
+    document.querySelectorAll('.progress .p').forEach(function(p){var s=+p.dataset.s;p.classList.toggle('done',s<n);p.classList.toggle('now',s===n);});
+    document.getElementById('form').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+  }
+  function checked(name){return !!document.querySelector('input[name="'+name+'"]:checked');}
+  document.getElementById('n0').addEventListener('click',function(){
+    var ok=!!petInput.value; document.getElementById('e0').classList.toggle('show',!ok); if(ok) show(2);
+  });
+  document.getElementById('n1').addEventListener('click',function(){
+    var ok=loc.value && checked('vivienda'); document.getElementById('e1').classList.toggle('show',!ok); if(ok) show(3);
+  });
+  document.getElementById('b1').addEventListener('click',function(){show(1)});
+  document.getElementById('b2').addEventListener('click',function(){show(2)});
+  document.getElementById('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=document.getElementById('f-nombre').value.trim() && document.getElementById('f-tel').value.trim() && checked('horas') && checked('otros') && checked('arriendo') && document.getElementById('f-ok').checked;
+    document.getElementById('e2').classList.toggle('show',!ok); if(!ok) return;
+    steps[3].hidden=true; document.querySelector('.progress').hidden=true;
+    var z=ZONES.filter(function(x){return x.n===loc.value})[0];
+    var p=PETS.filter(function(x){return x.n===petInput.value})[0];
+    var t=document.getElementById('done-title'), x=document.getElementById('done-text');
+    if(z&&z.s==='stop'){t.textContent='Gracias, te avisaremos';x.textContent='Por ahora no entregamos en '+z.n+'. Guardamos tus datos y te escribimos por WhatsApp si la zona cambia o si quieres ser hogar de paso.';}
+    else { t.textContent = p ? '¡Tu huella quedó junto a la de '+p.n+'!' : '¡Tu huella quedó registrada!'; x.textContent = (p ? 'Recibimos tu solicitud para adoptar a '+p.n+'. ' : 'Recibimos tu solicitud. ')+'Te escribimos por WhatsApp en los próximos minutos con el número de radicado; la fundación la revisa en máximo 72 horas.'; }
+    var d=document.getElementById('done'); d.classList.add('show');
+    if(window.gsap&&!reduced){gsap.fromTo(d.querySelector('svg'),{scale:.4,rotate:-20,opacity:0},{scale:1,rotate:0,opacity:1,duration:.6,ease:'back.out(1.7)'});}
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    document.getElementById('form').reset(); zr.className='zone-result'; choosePet(''); document.getElementById('done').classList.remove('show'); document.querySelector('.progress').hidden=false; show(1);
+  });
+
+  /* ---------- Reveal ---------- */
+  if('IntersectionObserver' in window && !reduced){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  } else { document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')}); }
+
+  /* ---------- Intro: scrollytelling ---------- */
+  function finalState(){
+    // Estado final estático (sin motion o sin GSAP)
+    var set=function(id,attrs){var el=document.getElementById(id);if(!el)return;for(var k in attrs)el.setAttribute(k,attrs[k]);};
+    ['body','legb1','legb2','legf1','legf2','face'].forEach(function(id){set(id,{fill:'#D8782E'})});
+    set('tail',{stroke:'#D8782E',d:'M-62 -6 Q-80 -40 -60 -56'}); set('ear1',{fill:'#B45E1E'}); set('ear2',{fill:'#B45E1E'}); set('muzzle',{fill:'#F6E1CF'});
+    set('mouth',{d:'M0 20 Q14 36 28 20'}); set('tongue',{opacity:1}); set('tear',{opacity:0}); set('dirt',{opacity:0}); set('ribs',{opacity:0}); set('rain',{opacity:0}); set('box',{opacity:0}); set('puddle',{opacity:0});
+    set('sun',{opacity:1}); set('home',{opacity:1}); set('collar',{opacity:1}); set('heart',{opacity:1}); set('head',{transform:'translate(58,-30) rotate(-6)'}); set('brow1',{d:'M-20 -14 q8 -6 14 -4'}); set('brow2',{d:'M6 -18 q6 -6 12 -4'});
+    document.getElementById('sky').style.opacity=1;
+    var caps=document.querySelectorAll('.cap'); caps.forEach(function(c,i){c.style.opacity=i===caps.length-1?1:0;c.style.transform='none';});
+    var h=document.getElementById('hint'); if(h) h.style.display='none';
+  }
+  if(reduced || !window.gsap || !window.ScrollTrigger){ document.documentElement.classList.add('static'); finalState(); return; }
+
+  gsap.registerPlugin(ScrollTrigger);
+  // Rastro de huellas: 10 pisadas alternadas cruzando la escena
+  var trail=document.getElementById('trail'), paws=[];
+  for(var i=0;i<10;i++){
+    var s=document.createElementNS('http://www.w3.org/2000/svg','svg'); s.setAttribute('class','paw'); s.innerHTML='<use href="#pawicon"/>';
+    var x=6+i*9, y=78-i*6+(i%2?4:-4); s.style.left=x+'%'; s.style.top=y+'%'; s.style.setProperty('--rot',(i%2? -12: 12)+'deg');
+    trail.appendChild(s); paws.push(s);
+  }
+  var caps=document.querySelectorAll('.cap');
+  var tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'.intro',start:'top top',end:'bottom bottom',scrub:0.6}});
+  // Huellas: aparecen de a una a lo largo de todo el scroll
+  paws.forEach(function(p,i){ tl.to(p,{opacity:.85,scale:1,duration:.5,ease:'power2.out'}, i*0.9); });
+  tl.to('#hint',{opacity:0,duration:.4},0);
+
+  // Capítulo 2: rescate (mano, deja de llover, cabeza sube un poco)
+  tl.to(caps[0],{opacity:0,y:-12,duration:.6},1.4)
+    .to(caps[1],{opacity:1,y:0,duration:.6},1.9)
+    .to('#hand',{opacity:1,duration:.8},1.8)
+    .to('#rain',{opacity:0,duration:.8},1.8)
+    .to('#tear',{opacity:0,duration:.6},2)
+    .to('#head',{attr:{transform:'translate(58,-24) rotate(8)'},duration:1},1.8);
+
+  // Capítulo 3: recuperación (color, sin costillas ni suciedad, sol, cama)
+  tl.to(caps[1],{opacity:0,y:-12,duration:.6},3.6)
+    .to(caps[2],{opacity:1,y:0,duration:.6},4.1)
+    .to('#hand',{opacity:0,duration:.5},3.6)
+    .to('#box',{opacity:0,duration:.6},3.6)
+    .to('#puddle',{opacity:0,duration:.6},3.6)
+    .to('#home',{opacity:1,duration:.8},4)
+    .to('#sky',{opacity:1,duration:1.2},3.8)
+    .to('#sun',{opacity:1,duration:1},4)
+    .to(['#body','#legb1','#legb2','#legf1','#legf2','#face'],{attr:{fill:'#D8782E'},duration:1.2},3.8)
+    .to(['#ear1','#ear2'],{attr:{fill:'#B45E1E'},duration:1.2},3.8)
+    .to('#muzzle',{attr:{fill:'#F6E1CF'},duration:1.2},3.8)
+    .to('#tail',{attr:{stroke:'#D8782E'},duration:1.2},3.8)
+    .to(['#ribs','#dirt'],{opacity:0,duration:.8},3.9)
+    .to('#body',{attr:{ry:44},duration:1},4)
+    .to('#head',{attr:{transform:'translate(58,-30) rotate(-6)'},duration:1},4)
+    .to('#brow1',{attr:{d:'M-20 -14 q8 -6 14 -4'},duration:.8},4.2)
+    .to('#brow2',{attr:{d:'M6 -18 q6 -6 12 -4'},duration:.8},4.2);
+
+  // Capítulo 4: hogar (sonrisa, lengua, collar, cola arriba, corazón)
+  tl.to(caps[2],{opacity:0,y:-12,duration:.6},5.8)
+    .to(caps[3],{opacity:1,y:0,duration:.6},6.3)
+    .to('#mouth',{attr:{d:'M0 20 Q14 36 28 20'},duration:.8},6)
+    .to('#tongue',{opacity:1,duration:.5},6.4)
+    .to('#collar',{opacity:1,duration:.5},6.2)
+    .to('#tail',{attr:{d:'M-62 -6 Q-80 -40 -60 -56'},duration:.8,ease:'back.out(1.4)'},6)
+    .to('#heart',{opacity:1,y:-14,duration:.8,ease:'power2.out'},6.6)
+    .to({},{duration:.8});
+
+  // Cola moviéndose al final (idle, no ligado al scroll)
+  var wag=gsap.to('#tail',{rotation:10,transformOrigin:'0% 50%',duration:.25,yoyo:true,repeat:-1,ease:'sine.inOut',paused:true});
+  ScrollTrigger.create({trigger:'.intro',start:'85% bottom',end:'bottom top',onEnter:function(){wag.play()},onLeaveBack:function(){wag.pause()}});
+
+  // Ancla: la nav salta más allá del scrollytelling sin dejar la intro a medias
+  document.querySelectorAll('.brand').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});});
+})();
+</script>
+
+</body>
+</html>
